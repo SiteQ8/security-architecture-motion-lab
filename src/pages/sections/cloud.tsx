@@ -2,21 +2,23 @@ import React, { useState } from 'react';
 import { LabCanvas } from '@/components/motion/lab-canvas';
 import { ArchitectureNode, TrustBoundary } from '@/components/motion/nodes';
 import { PacketFlow, FlowPath } from '@/components/motion/packets';
+import { Reveal } from '@/components/motion/reveal';
 
 export function CloudSection() {
   const [isPlaying, setIsPlaying] = useState(true);
 
   return (
     <section id="cloud" className="scroll-mt-24">
-      <div className="mb-8">
+      <Reveal className="mb-8">
         <h2 className="text-3xl font-bold tracking-tight mb-4 text-foreground">Cloud & Containers</h2>
         <p className="text-muted-foreground leading-relaxed">
           Cloud security relies on the Shared Responsibility Model. You are responsible for configuring IAM, 
           network ACLs, and securing the container runtime. Misconfigurations (like public S3 buckets) are the #1 cause of cloud breaches.
         </p>
-      </div>
+      </Reveal>
 
-      <LabCanvas
+      <Reveal>
+        <LabCanvas
         title="Kubernetes / Container Security"
         description="Namespaces, Network Policies, and RBAC limiting container breakouts."
         isPlaying={isPlaying}
@@ -46,7 +48,8 @@ export function CloudSection() {
 
         {/* Allowed API communication */}
         <PacketFlow id="c3" type="data" sourceId="pod-web" targetId="pod-api" startX="30%" startY="55%" endX="70%" endY="45%" isPlaying={isPlaying} delay={3} label="Allowed Traffic" />
-      </LabCanvas>
+        </LabCanvas>
+      </Reveal>
     </section>
   );
 }
