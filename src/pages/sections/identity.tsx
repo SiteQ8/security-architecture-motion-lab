@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { LabCanvas } from '@/components/motion/lab-canvas';
 import { ArchitectureNode, TrustBoundary } from '@/components/motion/nodes';
 import { PacketFlow, FlowPath } from '@/components/motion/packets';
+import { Reveal, StaggerGroup, StaggerItem, PulseDot } from '@/components/motion/reveal';
 
 export function IdentitySection() {
   const [isPlaying, setIsPlaying] = useState(true);
@@ -22,13 +23,13 @@ export function IdentitySection() {
 
   return (
     <section id="identity" className="scroll-mt-24">
-      <div className="mb-8">
+      <Reveal className="mb-8">
         <h2 className="text-3xl font-bold tracking-tight mb-4 text-foreground">Identity & Privileged Access</h2>
         <p className="text-muted-foreground leading-relaxed">
           Identity is the new perimeter. Who you are, what you are trying to access, and the context of your request 
           (location, device health, time of day) are the primary determinants of trust. 
         </p>
-      </div>
+      </Reveal>
 
       <LabCanvas
         title="Identity Flows"
@@ -73,20 +74,20 @@ export function IdentitySection() {
         )}
       </LabCanvas>
 
-      <div className="grid md:grid-cols-3 gap-6 mt-8">
-        <div className="bg-card border border-border p-5 rounded-xl">
-          <h4 className="font-semibold text-foreground mb-1">MFA Bypass</h4>
+      <StaggerGroup className="grid md:grid-cols-3 gap-6 mt-8">
+        <StaggerItem className="bg-card border border-border p-5 rounded-xl hover-elevate transition-all">
+          <h4 className="font-semibold text-foreground mb-1 flex items-center gap-2"><PulseDot className="text-destructive" />MFA Bypass</h4>
           <p className="text-sm text-muted-foreground">Attackers use fatigue (spamming prompts) or AiTM (Adversary in the Middle) proxies. Defense: FIDO2 / WebAuthn.</p>
-        </div>
-        <div className="bg-card border border-border p-5 rounded-xl">
-          <h4 className="font-semibold text-foreground mb-1">Least Privilege</h4>
+        </StaggerItem>
+        <StaggerItem className="bg-card border border-border p-5 rounded-xl hover-elevate transition-all">
+          <h4 className="font-semibold text-foreground mb-1 flex items-center gap-2"><PulseDot className="text-primary" />Least Privilege</h4>
           <p className="text-sm text-muted-foreground">Users should only have the exact permissions necessary to perform their job, and only when they need them.</p>
-        </div>
-        <div className="bg-card border border-border p-5 rounded-xl">
-          <h4 className="font-semibold text-foreground mb-1">Service Identities</h4>
+        </StaggerItem>
+        <StaggerItem className="bg-card border border-border p-5 rounded-xl hover-elevate transition-all">
+          <h4 className="font-semibold text-foreground mb-1 flex items-center gap-2"><PulseDot className="text-success" />Service Identities</h4>
           <p className="text-sm text-muted-foreground">Machine-to-machine auth (like OAuth Client Credentials or SPIFFE/mTLS) is just as critical as human identity.</p>
-        </div>
-      </div>
+        </StaggerItem>
+      </StaggerGroup>
     </section>
   );
 }
