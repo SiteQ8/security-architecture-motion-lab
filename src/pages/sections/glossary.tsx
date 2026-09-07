@@ -1,4 +1,5 @@
 import React from 'react';
+import { Reveal, StaggerGroup, StaggerItem } from '@/components/motion/reveal';
 
 const terms = [
   { term: "Zero Trust", definition: "A security framework requiring all users, whether in or outside the organization's network, to be authenticated, authorized, and continuously validated." },
@@ -14,18 +15,18 @@ const terms = [
 export function GlossarySection() {
   return (
     <section id="glossary" className="scroll-mt-24 border-t border-border pt-20">
-      <div className="mb-8">
+      <Reveal className="mb-8">
         <h2 className="text-3xl font-bold tracking-tight mb-4 text-foreground">Glossary</h2>
-      </div>
+      </Reveal>
 
-      <dl className="grid md:grid-cols-2 gap-x-8 gap-y-6">
+      <StaggerGroup className="grid md:grid-cols-2 gap-x-8 gap-y-6">
         {terms.map((t, idx) => (
-          <div key={idx} className="bg-muted/10 p-4 rounded-lg border border-border/50">
+          <StaggerItem key={idx} className="bg-muted/10 p-4 rounded-lg border border-border/50 hover-elevate transition-all">
             <dt className="font-bold text-primary mb-1">{t.term}</dt>
             <dd className="text-sm text-muted-foreground leading-relaxed">{t.definition}</dd>
-          </div>
+          </StaggerItem>
         ))}
-      </dl>
+      </StaggerGroup>
     </section>
   );
 }
