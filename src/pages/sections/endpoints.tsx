@@ -1,18 +1,19 @@
 import React from 'react';
 import { Laptop, Smartphone, Activity, Search } from 'lucide-react';
+import { Reveal, StaggerGroup, StaggerItem } from '@/components/motion/reveal';
 
 export function EndpointsSection() {
   return (
     <section id="endpoints" className="scroll-mt-24">
-      <div className="mb-8">
+      <Reveal className="mb-8">
         <h2 className="text-3xl font-bold tracking-tight mb-4 text-foreground">Endpoints & Device Posture</h2>
         <p className="text-muted-foreground leading-relaxed">
           The endpoint is often the starting point of an attack. Modern security relies on checking the health and posture of the device <em>before</em> granting access, and continuously monitoring it using EDR/XDR.
         </p>
-      </div>
+      </Reveal>
 
-      <div className="grid md:grid-cols-2 gap-8">
-        <div className="bg-card border border-border rounded-xl p-8 relative overflow-hidden group">
+      <StaggerGroup className="grid md:grid-cols-2 gap-8">
+        <StaggerItem className="bg-card border border-border rounded-xl p-8 relative overflow-hidden group hover-elevate transition-all">
           <div className="absolute top-0 right-0 p-8 opacity-5">
             <Activity className="w-32 h-32" />
           </div>
@@ -28,9 +29,9 @@ export function EndpointsSection() {
             <li className="flex items-center gap-2 text-foreground/80"><span className="w-1.5 h-1.5 rounded-full bg-primary" /> Automated Isolation</li>
             <li className="flex items-center gap-2 text-foreground/80"><span className="w-1.5 h-1.5 rounded-full bg-primary" /> Deep telemetry collection</li>
           </ul>
-        </div>
+        </StaggerItem>
 
-        <div className="bg-card border border-border rounded-xl p-8 relative overflow-hidden group">
+        <StaggerItem className="bg-card border border-border rounded-xl p-8 relative overflow-hidden group hover-elevate transition-all">
           <div className="absolute top-0 right-0 p-8 opacity-5">
             <Search className="w-32 h-32" />
           </div>
@@ -46,8 +47,8 @@ export function EndpointsSection() {
             <li className="flex items-center gap-2 text-foreground/80"><span className="w-1.5 h-1.5 rounded-full bg-success" /> Disk encrypted (BitLocker/FileVault)</li>
             <li className="flex items-center gap-2 text-foreground/80"><span className="w-1.5 h-1.5 rounded-full bg-destructive" /> Jailbroken / Rooted (Deny Access)</li>
           </ul>
-        </div>
-      </div>
+        </StaggerItem>
+      </StaggerGroup>
     </section>
   );
 }
