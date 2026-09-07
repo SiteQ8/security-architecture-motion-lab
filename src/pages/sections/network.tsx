@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { LabCanvas } from '@/components/motion/lab-canvas';
 import { ArchitectureNode, TrustBoundary } from '@/components/motion/nodes';
 import { PacketFlow, FlowPath } from '@/components/motion/packets';
+import { Reveal } from '@/components/motion/reveal';
 
 export function NetworkSection() {
   const [isPlaying, setIsPlaying] = useState(true);
@@ -22,15 +23,16 @@ export function NetworkSection() {
 
   return (
     <section id="network" className="scroll-mt-24">
-      <div className="mb-8">
+      <Reveal className="mb-8">
         <h2 className="text-3xl font-bold tracking-tight mb-4 text-foreground">Edge, Network & Mesh</h2>
         <p className="text-muted-foreground leading-relaxed">
           The network provides the highways for data. Securing it requires stopping bad traffic far away from your origin (Edge/WAF) 
           and ensuring that traffic inside the cluster is authenticated and encrypted (Service Mesh).
         </p>
-      </div>
+      </Reveal>
 
-      <LabCanvas
+      <Reveal>
+        <LabCanvas
         title="Traffic Filtering & Encrypted Tunnels"
         description={scenarios.find(s => s.id === scenario)?.description || ''}
         scenarios={scenarios}
@@ -83,7 +85,8 @@ export function NetworkSection() {
             <PacketFlow id="app-res" type="data" sourceId="proxy-b" targetId="svc-b" startX="65%" startY="65%" endX="75%" endY="50%" isPlaying={isPlaying} delay={2} label="Cleartext" />
           </>
         )}
-      </LabCanvas>
+        </LabCanvas>
+      </Reveal>
     </section>
   );
 }
