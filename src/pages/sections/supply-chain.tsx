@@ -2,21 +2,23 @@ import React, { useState } from 'react';
 import { LabCanvas } from '@/components/motion/lab-canvas';
 import { ArchitectureNode } from '@/components/motion/nodes';
 import { PacketFlow, FlowPath } from '@/components/motion/packets';
+import { Reveal } from '@/components/motion/reveal';
 
 export function SupplyChainSection() {
   const [isPlaying, setIsPlaying] = useState(true);
 
   return (
     <section id="supply-chain" className="scroll-mt-24">
-      <div className="mb-8">
+      <Reveal className="mb-8">
         <h2 className="text-3xl font-bold tracking-tight mb-4 text-foreground">Supply Chain & DevSecOps</h2>
         <p className="text-muted-foreground leading-relaxed">
           Attackers increasingly target the CI/CD pipeline rather than the production environment. 
           If they can inject malicious code during the build, it gets deployed automatically with a high level of trust.
         </p>
-      </div>
+      </Reveal>
 
-      <LabCanvas
+      <Reveal>
+        <LabCanvas
         title="Secure CI/CD Pipeline"
         description="Scanning code, building artifacts, generating SBOMs, and signing images before deployment."
         isPlaying={isPlaying}
@@ -46,7 +48,8 @@ export function SupplyChainSection() {
         <PacketFlow id="sign-ok" type="control" sourceId="signer" targetId="ci" startX="70%" startY="20%" endX="55%" endY="50%" isPlaying={isPlaying} delay={4} label="SBOM + Sig" />
 
         <PacketFlow id="push" type="data" sourceId="ci" targetId="registry" startX="55%" startY="50%" endX="85%" endY="50%" isPlaying={isPlaying} delay={5} label="Signed Container" />
-      </LabCanvas>
+        </LabCanvas>
+      </Reveal>
     </section>
   );
 }
