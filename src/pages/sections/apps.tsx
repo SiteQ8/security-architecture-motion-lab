@@ -3,6 +3,7 @@ import { LabCanvas } from '@/components/motion/lab-canvas';
 import { ArchitectureNode } from '@/components/motion/nodes';
 import { PacketFlow, FlowPath } from '@/components/motion/packets';
 import { Bug, CheckCircle2 } from 'lucide-react';
+import { Reveal, StaggerGroup, StaggerItem } from '@/components/motion/reveal';
 
 export function AppsSection() {
   const [isPlaying, setIsPlaying] = useState(true);
@@ -23,12 +24,12 @@ export function AppsSection() {
 
   return (
     <section id="apps" className="scroll-mt-24">
-      <div className="mb-8">
+      <Reveal className="mb-8">
         <h2 className="text-3xl font-bold tracking-tight mb-4 text-foreground">Apps, APIs & Threat Modeling</h2>
         <p className="text-muted-foreground leading-relaxed">
           Application security is about writing code that anticipates failure. The OWASP Top 10 highlights consistent flaws like injection, broken authentication, and authorization failures (BOLA). Threat modeling (STRIDE) helps identify these before code is written.
         </p>
-      </div>
+      </Reveal>
 
       <LabCanvas
         title="API Exploitation"
@@ -73,17 +74,17 @@ export function AppsSection() {
         )}
       </LabCanvas>
 
-      <div className="bg-destructive/10 border border-destructive/20 p-5 rounded-xl mt-8">
+      <Reveal className="bg-destructive/10 border border-destructive/20 p-5 rounded-xl mt-8">
         <h4 className="font-semibold text-destructive mb-2 flex items-center gap-2">
           <Bug className="w-5 h-5" />
           Defensive Principles
         </h4>
-        <ul className="space-y-2 text-sm text-foreground/80">
-          <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-success mt-0.5" /> <strong>Input Validation:</strong> Always use parameterized queries / ORMs. Never concatenate strings for SQL.</li>
-          <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-success mt-0.5" /> <strong>Authorization:</strong> Check ownership at the resource level, not just the routing level. Does this token own ID 99?</li>
-          <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-success mt-0.5" /> <strong>Output Encoding:</strong> Prevent XSS by sanitizing data before rendering it in the DOM.</li>
-        </ul>
-      </div>
+        <StaggerGroup className="space-y-2 text-sm text-foreground/80">
+          <StaggerItem><li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-success mt-0.5" /> <strong>Input Validation:</strong> Always use parameterized queries / ORMs. Never concatenate strings for SQL.</li></StaggerItem>
+          <StaggerItem><li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-success mt-0.5" /> <strong>Authorization:</strong> Check ownership at the resource level, not just the routing level. Does this token own ID 99?</li></StaggerItem>
+          <StaggerItem><li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-success mt-0.5" /> <strong>Output Encoding:</strong> Prevent XSS by sanitizing data before rendering it in the DOM.</li></StaggerItem>
+        </StaggerGroup>
+      </Reveal>
     </section>
   );
 }
