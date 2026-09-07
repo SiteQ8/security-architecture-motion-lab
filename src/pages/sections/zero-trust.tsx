@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { LabCanvas } from '@/components/motion/lab-canvas';
 import { ArchitectureNode, TrustBoundary } from '@/components/motion/nodes';
 import { PacketFlow, FlowPath } from '@/components/motion/packets';
+import { Reveal, StaggerGroup, StaggerItem, PulseDot } from '@/components/motion/reveal';
 
 export function ZeroTrustSection() {
   const [isPlaying, setIsPlaying] = useState(true);
@@ -22,14 +23,14 @@ export function ZeroTrustSection() {
 
   return (
     <section id="zero-trust" className="scroll-mt-24">
-      <div className="mb-8">
+      <Reveal className="mb-8">
         <h2 className="text-3xl font-bold tracking-tight mb-4 text-foreground">Zero Trust & Boundaries</h2>
         <p className="text-muted-foreground leading-relaxed">
           The core premise of modern security architecture is that <strong className="text-foreground">trust is a vulnerability</strong>. 
           Legacy architectures assumed that everything inside the corporate network was safe (the "M&M" model: hard on the outside, soft on the inside). 
           Zero Trust dictates that we must "never trust, always verify" regardless of where a request originates.
         </p>
-      </div>
+      </Reveal>
 
       <LabCanvas
         title="Lateral Movement Dynamics"
@@ -83,26 +84,26 @@ export function ZeroTrustSection() {
         )}
       </LabCanvas>
 
-      <div className="grid md:grid-cols-2 gap-6 mt-8">
-        <div className="bg-card border border-border p-6 rounded-xl">
+      <StaggerGroup className="grid md:grid-cols-2 gap-6 mt-8">
+        <StaggerItem className="bg-card border border-border p-6 rounded-xl hover-elevate transition-all">
           <h4 className="font-semibold text-primary mb-2 flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-primary inline-block"></span>
+            <PulseDot className="text-primary" />
             Micro-segmentation
           </h4>
           <p className="text-sm text-muted-foreground">
             Dividing the network into isolated segments so that if one is compromised, the blast radius is contained. Firewalls and policies dictate exact permitted communication paths.
           </p>
-        </div>
-        <div className="bg-card border border-border p-6 rounded-xl">
+        </StaggerItem>
+        <StaggerItem className="bg-card border border-border p-6 rounded-xl hover-elevate transition-all">
           <h4 className="font-semibold text-primary mb-2 flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-primary inline-block"></span>
+            <PulseDot className="text-primary" />
             Continuous Verification
           </h4>
           <p className="text-sm text-muted-foreground">
             Authenticating and authorizing every connection, evaluating identity, device posture, context, and anomalies before granting access—every single time.
           </p>
-        </div>
-      </div>
+        </StaggerItem>
+      </StaggerGroup>
     </section>
   );
 }
